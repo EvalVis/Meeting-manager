@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import ev.projects.meetingmanager.models.MeetingBinding;
+import ev.projects.meetingmanager.models.PersonBinding;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -33,18 +35,24 @@ public class FileHandler {
         writeObjectToFile(meetingBindings, listType);
     }
 
+    public void AddPersonToMeeting(String meetingName, PersonBinding personBinding) {
+        List<MeetingBinding> meetingBindings = getMeetingsFromFile();
+        MeetingBinding meetingToAddTo = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
+        if(MeetingBinding.meetingsIntersect(meetingBindings, meetingToAddTo)) {
+            //TODO warning.
+        }
+        if(!meetingToAddTo.findParticipant(personBinding.getFullName())) {
+            meetingToAddTo.addParticipant(personBinding);
+        }
+    }
+
     public void deleteMeeting(String meetingName, String responsiblePerson) {
         List<MeetingBinding> meetingBindings = getMeetingsFromFile();
-        for(MeetingBinding meetingBinding: meetingBindings) {
-            if(meetingBinding.getName().equalsIgnoreCase(meetingName)) {
-                if(meetingBinding.getResponsiblePerson().equalsIgnoreCase(responsiblePerson)) {
-                    meetingBindings.remove(meetingBinding);
-                    writeObjectToFile(meetingBindings, listType);
-                }
-            }
-            break;
+        MeetingBinding meetingToDelete = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
+        if(meetingToDelete.getResponsiblePerson().equalsIgnoreCase(responsiblePerson)) {
+            meetingBindings.remove(meetingToDelete);
+            writeObjectToFile(meetingBindings, listType);
         }
-
     }
 
     private List<MeetingBinding> getMeetingsFromFile() {

@@ -1,6 +1,10 @@
 package ev.projects.meetingmanager.models;
 
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class MeetingBinding {
 
@@ -11,6 +15,7 @@ public class MeetingBinding {
     private MeetingType type;
     private Date StartDate;
     private Date EndDate;
+    private List<PersonBinding> participants = new ArrayList<>();
 
     public MeetingBinding() {
 
@@ -80,6 +85,52 @@ public class MeetingBinding {
 
     public void setEndDate(Date endDate) {
         EndDate = endDate;
+    }
+
+    public List<PersonBinding> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<PersonBinding> participants) {
+        this.participants = participants;
+    }
+
+    public void addParticipant(PersonBinding personBinding) {
+        participants.add(personBinding);
+    }
+
+    public boolean findParticipant(String participantFullName) {
+        for(PersonBinding participant: participants) {
+            if(participant.getFullName().equalsIgnoreCase(participantFullName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean meetingsIntersect(Collection<MeetingBinding> meetingBindingCollection,
+                                            MeetingBinding meetingBindingToCompare) {
+        for(MeetingBinding meetingBinding: meetingBindingCollection) {
+            if(meetingBinding.meetingsIntersect(meetingBindingToCompare) &&
+                    !meetingBinding.equals(meetingBindingToCompare)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean meetingsIntersect(MeetingBinding meetingBindingToCompare) {
+        return !(getEndDate().before(meetingBindingToCompare.getStartDate()) ||
+                getStartDate().after(meetingBindingToCompare.getEndDate()));
+    }
+
+    public static MeetingBinding findMeetingByName(Collection<MeetingBinding> meetingBindingCollection, String name) {
+        for(MeetingBinding meetingBinding: meetingBindingCollection) {
+            if(meetingBinding.getName().equalsIgnoreCase(name)) {
+                return meetingBinding;
+            }
+        }
+        return null;
     }
 
 }
