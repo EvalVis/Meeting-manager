@@ -33,6 +33,20 @@ public class FileHandler {
         writeObjectToFile(meetingBindings, listType);
     }
 
+    public void deleteMeeting(String meetingName, String responsiblePerson) {
+        List<MeetingBinding> meetingBindings = getMeetingsFromFile();
+        for(MeetingBinding meetingBinding: meetingBindings) {
+            if(meetingBinding.getName().equalsIgnoreCase(meetingName)) {
+                if(meetingBinding.getResponsiblePerson().equalsIgnoreCase(responsiblePerson)) {
+                    meetingBindings.remove(meetingBinding);
+                    writeObjectToFile(meetingBindings, listType);
+                }
+            }
+            break;
+        }
+
+    }
+
     private List<MeetingBinding> getMeetingsFromFile() {
         createFileIfNotFound();
         List<MeetingBinding> meetings = null;
