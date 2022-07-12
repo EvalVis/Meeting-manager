@@ -99,6 +99,14 @@ public class MeetingBinding {
         participants.add(personBinding);
     }
 
+    public void removeParticipant(String personFullName) {
+        for(PersonBinding participant: participants) {
+            if(participant.getFullName().equalsIgnoreCase(personFullName)) {
+                participants.remove(participant);
+            }
+        }
+    }
+
     public boolean findParticipant(String participantFullName) {
         for(PersonBinding participant: participants) {
             if(participant.getFullName().equalsIgnoreCase(participantFullName)) {

@@ -46,10 +46,19 @@ public class FileHandler {
         }
     }
 
+    public void removePerson(String meetingName, String personFullName) {
+        List<MeetingBinding> meetingBindings = getMeetingsFromFile();
+        MeetingBinding meetingToRemoveFrom = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
+        if(meetingToRemoveFrom != null &&
+                !meetingToRemoveFrom.getResponsiblePerson().equalsIgnoreCase(personFullName)) {
+            meetingToRemoveFrom.removeParticipant(personFullName);
+        }
+    }
+
     public void deleteMeeting(String meetingName, String responsiblePerson) {
         List<MeetingBinding> meetingBindings = getMeetingsFromFile();
         MeetingBinding meetingToDelete = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
-        if(meetingToDelete.getResponsiblePerson().equalsIgnoreCase(responsiblePerson)) {
+        if(meetingToDelete != null && meetingToDelete.getResponsiblePerson().equalsIgnoreCase(responsiblePerson)) {
             meetingBindings.remove(meetingToDelete);
             writeObjectToFile(meetingBindings, listType);
         }
