@@ -13,15 +13,10 @@ import java.util.List;
 
 public class FileHandler {
 
-    File dataFile;
+    File dataFile = new File("data/meetings.json");
     private final Type listType = new TypeToken<List<MeetingBinding>>() {}.getType();
 
-    public FileHandler() {
-        createFileIfNotFound();
-    }
-
     private void createFileIfNotFound() {
-        dataFile = new File("data/meetings.json");
         if(!dataFile.exists()) {
             try {
                 dataFile.createNewFile();
@@ -39,6 +34,7 @@ public class FileHandler {
     }
 
     private List<MeetingBinding> getMeetingsFromFile() {
+        createFileIfNotFound();
         List<MeetingBinding> meetings = null;
         try(JsonReader reader = new JsonReader(new FileReader(dataFile))) {
             meetings = new Gson().fromJson(reader, listType);
@@ -54,6 +50,7 @@ public class FileHandler {
     }
 
     private void writeToFile(String data) {
+        createFileIfNotFound();
         try(FileWriter fileWriter = new FileWriter(dataFile)) {
             fileWriter.write(data);
         } catch(IOException e) {
