@@ -10,9 +10,9 @@ public class PersonController {
     private final FileHandler fileHandler = new FileHandler();
 
     @PostMapping("/person")
-    private void addPersonToMeeting(@RequestParam("meeting_name") String meetingName,
+    private boolean addPersonToMeeting(@RequestParam("meeting_name") String meetingName,
                                     @RequestBody PersonBinding personBinding) {
-        fileHandler.AddPersonToMeeting(meetingName, personBinding);
+        return fileHandler.AddPersonToMeeting(meetingName, personBinding);
     }
 
     @DeleteMapping("/person")

@@ -36,15 +36,17 @@ public class FileHandler {
         writeObjectToFile(meetingBindings, listType);
     }
 
-    public void AddPersonToMeeting(String meetingName, PersonBinding personBinding) {
+    public boolean AddPersonToMeeting(String meetingName, PersonBinding personBinding) {
+        boolean intersectingMeetings = false;
         List<MeetingBinding> meetingBindings = getMeetingsFromFile();
         MeetingBinding meetingToAddTo = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
         if(MeetingBinding.meetingsIntersect(meetingBindings, meetingToAddTo)) {
-            //TODO warning.
+            intersectingMeetings = true;
         }
         if(!meetingToAddTo.findParticipant(personBinding.getFullName())) {
             meetingToAddTo.addParticipant(personBinding);
         }
+        return intersectingMeetings;
     }
 
     public void removePerson(String meetingName, String personFullName) {
