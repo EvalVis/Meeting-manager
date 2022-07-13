@@ -32,4 +32,12 @@ public class PersonBinding {
         this.invitationDate = invitationDate;
     }
 
+    @Override
+    public String toString() {
+        return "PersonBinding{" +
+                "fullName='" + fullName + '\'' +
+                ", invitationDate=" + invitationDate +
+                '}';
+    }
+
 }

@@ -100,11 +100,7 @@ public class MeetingBinding {
     }
 
     public void removeParticipant(String personFullName) {
-        for(PersonBinding participant: participants) {
-            if(participant.getFullName().equalsIgnoreCase(personFullName)) {
-                participants.remove(participant);
-            }
-        }
+        participants.removeIf(participant -> participant.getFullName().equalsIgnoreCase(personFullName));
     }
 
     public boolean findParticipant(String participantFullName) {
@@ -139,6 +135,32 @@ public class MeetingBinding {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("MeetingBinding: { name= ");
+        stringBuilder.append(name);
+        stringBuilder.append(", responsiblePerson= ");
+        stringBuilder.append(responsiblePerson);
+        stringBuilder.append(", description= ");
+        stringBuilder.append(description);
+        stringBuilder.append(", category= ");
+        stringBuilder.append(category);
+        stringBuilder.append(", type= ");
+        stringBuilder.append(type);
+        stringBuilder.append(", startDate= ");
+        stringBuilder.append(StartDate.toString());
+        stringBuilder.append(", endDate= ");
+        stringBuilder.append(EndDate.toString());
+        stringBuilder.append(", participants= [");
+        for(PersonBinding participant: participants) {
+            stringBuilder.append("{ ");
+            stringBuilder.append(participant.toString());
+            stringBuilder.append(" }, ");
+        }
+        return stringBuilder.toString();
     }
 
 }
