@@ -36,6 +36,10 @@ public class PersonBinding {
         this.invitationDate = invitationDate;
     }
 
+    public boolean anyFieldNull() {
+        return fullName == null || invitationDate == null;
+    }
+
     @Override
     public String toString() {
         return "PersonBinding{" +

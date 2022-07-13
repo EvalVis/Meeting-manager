@@ -13,8 +13,8 @@ public class MeetingBinding {
     private String description;
     private MeetingCategory category;
     private MeetingType type;
-    private Date StartDate;
-    private Date EndDate;
+    private Date startDate;
+    private Date endDate;
     private List<PersonBinding> participants = new ArrayList<>();
 
     @SuppressWarnings("unused")
@@ -28,8 +28,8 @@ public class MeetingBinding {
         this.description = description;
         this.category = category;
         this.type = type;
-        StartDate = startDate;
-        EndDate = endDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public String getName() {
@@ -78,21 +78,21 @@ public class MeetingBinding {
     }
 
     public Date getStartDate() {
-        return StartDate;
+        return startDate;
     }
 
     @SuppressWarnings("unused")
     public void setStartDate(Date startDate) {
-        StartDate = startDate;
+        this.startDate = startDate;
     }
 
     public Date getEndDate() {
-        return EndDate;
+        return endDate;
     }
 
     @SuppressWarnings("unused")
     public void setEndDate(Date endDate) {
-        EndDate = endDate;
+        this.endDate = endDate;
     }
 
     public List<PersonBinding> getParticipants() {
@@ -135,6 +135,12 @@ public class MeetingBinding {
         return null;
     }
 
+    public boolean anyFieldNull() {
+        return name == null || responsiblePerson == null || description == null || category == null
+                || type == null || startDate == null || endDate == null;
+    }
+
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -149,9 +155,9 @@ public class MeetingBinding {
         stringBuilder.append(", type= ");
         stringBuilder.append(type);
         stringBuilder.append(", startDate= ");
-        stringBuilder.append(StartDate.toString());
+        stringBuilder.append(startDate.toString());
         stringBuilder.append(", endDate= ");
-        stringBuilder.append(EndDate.toString());
+        stringBuilder.append(endDate.toString());
         stringBuilder.append(", participants= [");
         for(PersonBinding participant: participants) {
             stringBuilder.append("{ ");
