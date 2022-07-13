@@ -3,14 +3,15 @@ package ev.projects.meetingmanager.handlers;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import ev.projects.meetingmanager.models.MeetingBinding;
-import ev.projects.meetingmanager.models.PersonBinding;
+import ev.projects.meetingmanager.models.*;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 public class FileHandler {
@@ -54,6 +55,13 @@ public class FileHandler {
             meetingToRemoveFrom.removeParticipant(personFullName);
         }
     }
+
+    public List<MeetingBinding> listMeetings(MeetingSearchBinding meetingSearchBinding) {
+        List<MeetingBinding> meetingBindings = getMeetingsFromFile();
+        return meetingSearchBinding.filterMeetings(meetingBindings);
+    }
+
+
 
     public void deleteMeeting(String meetingName, String responsiblePerson) {
         List<MeetingBinding> meetingBindings = getMeetingsFromFile();
