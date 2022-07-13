@@ -98,7 +98,7 @@ public class MeetingSearchBinding {
         this.maxParticipantsCount = maxParticipantsCount;
     }
 
-    private List<MeetingBinding> filterMeetings(Collection<MeetingBinding> meetingBindings) {
+    public List<MeetingBinding> filterMeetings(Collection<MeetingBinding> meetingBindings) {
         List<MeetingBinding> filteredMeetings = new ArrayList<>();
         for(MeetingBinding meetingBinding: meetingBindings) {
             if(matchesSearch(meetingBinding)) {
