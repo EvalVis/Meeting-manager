@@ -31,7 +31,7 @@ public class MeetingService {
         List<MeetingBinding> meetingBindings = meetingRepository.getMeetings();
         MeetingBinding meetingToDelete = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
         if(meetingToDelete != null && meetingToDelete.getResponsiblePerson().equalsIgnoreCase(responsiblePerson)) {
-            meetingRepository.deleteMeeting(meetingToDelete);
+            meetingRepository.deleteMeeting(meetingName);
         }
     }
 

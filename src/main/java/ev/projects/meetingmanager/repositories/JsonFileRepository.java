@@ -2,6 +2,7 @@ package ev.projects.meetingmanager.repositories;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.FileReader;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
+@Repository
 public abstract class JsonFileRepository {
 
     private File dataFile = new File("data/meetings.json");
@@ -48,6 +50,19 @@ public abstract class JsonFileRepository {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public void setRepositoryFile(File dataFile) {
+        this.dataFile = dataFile;
+    }
+
+    public void recreateFile() {
+        if(dataFile.exists()) {
+            boolean deleted = dataFile.delete();
+            if(deleted) {
+                createFileIfNotFound();
+            }
+        }
     }
 
 }

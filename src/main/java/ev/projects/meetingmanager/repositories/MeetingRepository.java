@@ -8,7 +8,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 @Repository
-public class MeetingRepository extends JsonFileRepository{
+public class MeetingRepository extends JsonFileRepository {
 
     private final Type meetingsListType = new TypeToken<List<MeetingBinding>>() {}.getType();
 
@@ -22,9 +22,9 @@ public class MeetingRepository extends JsonFileRepository{
         return getListFromFile(meetingsListType);
     }
 
-    public void deleteMeeting(MeetingBinding meetingBindingToDelete) {
+    public void deleteMeeting(String meetingName) {
         List<MeetingBinding> meetingBindings = getMeetings();
-        meetingBindings.remove(meetingBindingToDelete);
+        meetingBindings.removeIf(meetingBinding -> meetingBinding.getName().equalsIgnoreCase(meetingName));
         writeObjectToFile(meetingBindings, meetingsListType);
     }
 
