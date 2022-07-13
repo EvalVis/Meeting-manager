@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 public class MeetingController {
 
-    private MeetingService meetingService;
+    private final MeetingService meetingService;
 
     @Autowired
     public MeetingController(MeetingService meetingService) {

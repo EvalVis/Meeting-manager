@@ -19,7 +19,6 @@ import java.util.List;
 public class PersonServiceTests {
 
     private MeetingRepository meetingRepository;
-    private PersonRepository personRepository;
     private PersonService personService;
 
     @Before
@@ -27,14 +26,14 @@ public class PersonServiceTests {
         meetingRepository = new MeetingRepository();
         meetingRepository.setRepositoryFile(new File("data/test_meetings.json"));
         meetingRepository.recreateFile();
-        personRepository = new PersonRepository();
+        PersonRepository personRepository = new PersonRepository();
         personRepository.setRepositoryFile(new File("data/test_meetings.json"));
         personRepository.recreateFile();
         personService = new PersonService(personRepository);
     }
 
     @Test
-    public void addPersonToMeetingFirstTime() {
+    public void addPersonToMeetingTwoTimes() {
         String meetingName = "Test";
         Date startDate = new Date();
         MeetingBinding meetingBinding = new MeetingBinding(meetingName, "Jackson", "Described", MeetingCategory.SHORT,
@@ -42,15 +41,17 @@ public class PersonServiceTests {
         meetingRepository.createMeeting(meetingBinding);
         PersonBinding personBinding = new PersonBinding("Smith", new Date());
         boolean warned = personService.AddPersonToMeeting(meetingName, personBinding);
-        List<MeetingBinding> meetingBindings = meetingRepository.getMeetings();
-        int sizeAfterFirstInsert = MeetingBinding.findMeetingByName(meetingBindings, meetingName).
-                getParticipants().size();
         assertFalse(warned);
+        List<MeetingBinding> meetingBindings = meetingRepository.getMeetings();
+        MeetingBinding foundMeeting = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
+        assertNotNull(foundMeeting);
+        int sizeAfterFirstInsert = foundMeeting.getParticipants().size();
         warned = personService.AddPersonToMeeting(meetingName, personBinding);
         assertFalse(warned);
         meetingBindings = meetingRepository.getMeetings();
-        int sizeAfterSecondInsert = MeetingBinding.findMeetingByName(meetingBindings, meetingName).
-        getParticipants().size();
+        foundMeeting = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
+        assertNotNull(foundMeeting);
+        int sizeAfterSecondInsert = foundMeeting.getParticipants().size();
         assertEquals(sizeAfterFirstInsert, sizeAfterSecondInsert);
     }
 
@@ -85,10 +86,11 @@ public class PersonServiceTests {
         personService.AddPersonToMeeting(meetingName, personBinding);
         MeetingBinding meetingToRemoveFrom = MeetingBinding.
                 findMeetingByName(meetingRepository.getMeetings(), meetingName);
+        assertNotNull(meetingToRemoveFrom);
         int startingParticipants = meetingToRemoveFrom.getParticipants().size();
         personService.removePersonFromMeeting(meetingName, responsiblePerson);
-        meetingToRemoveFrom = MeetingBinding.
-                findMeetingByName(meetingRepository.getMeetings(), meetingName);
+        meetingToRemoveFrom = MeetingBinding.findMeetingByName(meetingRepository.getMeetings(), meetingName);
+        assertNotNull(meetingToRemoveFrom);
         int endingParticipants = meetingToRemoveFrom.getParticipants().size();
         assertEquals(startingParticipants, endingParticipants);
     }
@@ -106,10 +108,12 @@ public class PersonServiceTests {
         personService.AddPersonToMeeting(meetingName, personBinding);
         MeetingBinding meetingToRemoveFrom = MeetingBinding.
                 findMeetingByName(meetingRepository.getMeetings(), meetingName);
+        assertNotNull(meetingToRemoveFrom);
         int startingParticipants = meetingToRemoveFrom.getParticipants().size();
         personService.removePersonFromMeeting(meetingName, notResponsiblePerson);
         meetingToRemoveFrom = MeetingBinding.
                 findMeetingByName(meetingRepository.getMeetings(), meetingName);
+        assertNotNull(meetingToRemoveFrom);
         int endingParticipants = meetingToRemoveFrom.getParticipants().size();
         assertEquals(startingParticipants, endingParticipants + 1);
     }

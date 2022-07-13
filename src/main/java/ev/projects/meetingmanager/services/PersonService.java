@@ -5,14 +5,12 @@ import ev.projects.meetingmanager.models.PersonBinding;
 import ev.projects.meetingmanager.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 import java.util.List;
 
 @Service
 public class PersonService {
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     @Autowired
     public PersonService(PersonRepository personRepository) {
@@ -23,11 +21,13 @@ public class PersonService {
         boolean intersectingMeetings = false;
         List<MeetingBinding> meetingBindings = personRepository.getMeetings();
         MeetingBinding meetingToAddTo = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
-        if(meetingIntersects(meetingToAddTo)) {
-            intersectingMeetings = true;
-        }
-        if(!meetingToAddTo.findParticipant(personBinding.getFullName())) {
-            personRepository.addPersonToMeeting(meetingName, personBinding);
+        if(meetingToAddTo != null) {
+            if (meetingIntersects(meetingBindings, meetingToAddTo)) {
+                intersectingMeetings = true;
+            }
+            if (!meetingToAddTo.findParticipant(personBinding.getFullName())) {
+                personRepository.addPersonToMeeting(meetingName, personBinding);
+            }
         }
         return intersectingMeetings;
     }
@@ -41,8 +41,7 @@ public class PersonService {
         }
     }
 
-    private boolean meetingIntersects(MeetingBinding meetingBindingToCompare) {
-        List<MeetingBinding> meetingBindings = personRepository.getMeetings();
+    private boolean meetingIntersects(List<MeetingBinding> meetingBindings, MeetingBinding meetingBindingToCompare) {
         for(MeetingBinding meetingBinding: meetingBindings) {
             if(meetingBinding.meetingsIntersect(meetingBindingToCompare) &&
                     !meetingBinding.equals(meetingBindingToCompare)) {

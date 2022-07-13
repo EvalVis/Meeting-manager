@@ -8,6 +8,7 @@ public class PersonBinding {
 
     private Date invitationDate;
 
+    @SuppressWarnings("unused")
     public PersonBinding() {
     }
 
@@ -20,14 +21,17 @@ public class PersonBinding {
         return fullName;
     }
 
+    @SuppressWarnings("unused")
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
+    @SuppressWarnings("unused")
     public Date getInvitationDate() {
         return invitationDate;
     }
 
+    @SuppressWarnings("unused")
     public void setInvitationDate(Date invitationDate) {
         this.invitationDate = invitationDate;
     }

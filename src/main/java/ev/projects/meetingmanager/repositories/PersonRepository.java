@@ -20,15 +20,19 @@ public class PersonRepository extends JsonFileRepository {
     public void addPersonToMeeting(String meetingName, PersonBinding personBinding) {
         List<MeetingBinding> meetingBindings = getMeetings();
         MeetingBinding meetingToAddTo = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
-        meetingToAddTo.addParticipant(personBinding);
-        writeObjectToFile(meetingBindings, meetingsListType);
+        if(meetingToAddTo != null) {
+            meetingToAddTo.addParticipant(personBinding);
+            writeObjectToFile(meetingBindings, meetingsListType);
+        }
     }
 
     public void deletePersonFromMeeting(String meetingName, String personFullName) {
         List<MeetingBinding> meetingBindings = getMeetings();
         MeetingBinding meetingToRemoveFrom = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
-        meetingToRemoveFrom.removeParticipant(personFullName);
-        writeObjectToFile(meetingBindings, meetingsListType);
+        if(meetingToRemoveFrom != null) {
+            meetingToRemoveFrom.removeParticipant(personFullName);
+            writeObjectToFile(meetingBindings, meetingsListType);
+        }
     }
 
 }

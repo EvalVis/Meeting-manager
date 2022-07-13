@@ -19,8 +19,10 @@ public abstract class JsonFileRepository {
     private void createFileIfNotFound() {
         if(!dataFile.exists()) {
             try {
-                dataFile.createNewFile();
-                writeToFile("[]");
+                boolean created = dataFile.createNewFile();
+                if(created) {
+                    writeToFile("[]");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

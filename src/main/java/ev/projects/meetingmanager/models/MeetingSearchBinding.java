@@ -1,9 +1,6 @@
 package ev.projects.meetingmanager.models;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 public class MeetingSearchBinding {
 
@@ -20,6 +17,7 @@ public class MeetingSearchBinding {
 
     }
 
+    @SuppressWarnings("unused")
     public MeetingSearchBinding(String descriptionHas, String responsiblePerson,
                                 MeetingCategory meetingCategory, MeetingType meetingType,
                                 Date dateFrom, Date dateTo,
@@ -34,6 +32,7 @@ public class MeetingSearchBinding {
         this.maxParticipantsCount = maxParticipantsCount;
     }
 
+    @SuppressWarnings("unused")
     public String getDescriptionHas() {
         return descriptionHas;
     }
@@ -42,38 +41,47 @@ public class MeetingSearchBinding {
         this.descriptionHas = descriptionHas;
     }
 
+    @SuppressWarnings("unused")
     public String getResponsiblePerson() {
         return responsiblePerson;
     }
 
+    @SuppressWarnings("unused")
     public void setResponsiblePerson(String responsiblePerson) {
         this.responsiblePerson = responsiblePerson;
     }
 
+    @SuppressWarnings("unused")
     public MeetingCategory getMeetingCategory() {
         return meetingCategory;
     }
 
+    @SuppressWarnings("unused")
     public void setMeetingCategory(MeetingCategory meetingCategory) {
         this.meetingCategory = meetingCategory;
     }
 
+    @SuppressWarnings("unused")
     public MeetingType getMeetingType() {
         return meetingType;
     }
 
+    @SuppressWarnings("unused")
     public void setMeetingType(MeetingType meetingType) {
         this.meetingType = meetingType;
     }
 
+    @SuppressWarnings("unused")
     public Date getDateFrom() {
         return DateFrom;
     }
 
+    @SuppressWarnings("unused")
     public void setDateFrom(Date dateFrom) {
         DateFrom = dateFrom;
     }
 
+    @SuppressWarnings("unused")
     public Date getDateTo() {
         return DateTo;
     }
@@ -82,18 +90,22 @@ public class MeetingSearchBinding {
         DateTo = dateTo;
     }
 
+    @SuppressWarnings("unused")
     public Integer getMinParticipantsCount() {
         return minParticipantsCount;
     }
 
+    @SuppressWarnings("unused")
     public void setMinParticipantsCount(Integer minParticipantsCount) {
         this.minParticipantsCount = minParticipantsCount;
     }
 
+    @SuppressWarnings("unused")
     public Integer getMaxParticipantsCount() {
         return maxParticipantsCount;
     }
 
+    @SuppressWarnings("unused")
     public void setMaxParticipantsCount(Integer maxParticipantsCount) {
         this.maxParticipantsCount = maxParticipantsCount;
     }

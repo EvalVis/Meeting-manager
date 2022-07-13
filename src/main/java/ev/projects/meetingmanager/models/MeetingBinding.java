@@ -17,6 +17,7 @@ public class MeetingBinding {
     private Date EndDate;
     private List<PersonBinding> participants = new ArrayList<>();
 
+    @SuppressWarnings("unused")
     public MeetingBinding() {
 
     }
@@ -35,6 +36,7 @@ public class MeetingBinding {
         return name;
     }
 
+    @SuppressWarnings("unused")
     public void setName(String name) {
         this.name = name;
     }
@@ -43,6 +45,7 @@ public class MeetingBinding {
         return responsiblePerson;
     }
 
+    @SuppressWarnings("unused")
     public void setResponsiblePerson(String responsiblePerson) {
         this.responsiblePerson = responsiblePerson;
     }
@@ -51,6 +54,7 @@ public class MeetingBinding {
         return description;
     }
 
+    @SuppressWarnings("unused")
     public void setDescription(String description) {
         this.description = description;
     }
@@ -59,6 +63,7 @@ public class MeetingBinding {
         return category;
     }
 
+    @SuppressWarnings("unused")
     public void setCategory(MeetingCategory category) {
         this.category = category;
     }
@@ -67,6 +72,7 @@ public class MeetingBinding {
         return type;
     }
 
+    @SuppressWarnings("unused")
     public void setType(MeetingType type) {
         this.type = type;
     }
@@ -75,6 +81,7 @@ public class MeetingBinding {
         return StartDate;
     }
 
+    @SuppressWarnings("unused")
     public void setStartDate(Date startDate) {
         StartDate = startDate;
     }
@@ -83,6 +90,7 @@ public class MeetingBinding {
         return EndDate;
     }
 
+    @SuppressWarnings("unused")
     public void setEndDate(Date endDate) {
         EndDate = endDate;
     }
@@ -91,6 +99,7 @@ public class MeetingBinding {
         return participants;
     }
 
+    @SuppressWarnings("unused")
     public void setParticipants(List<PersonBinding> participants) {
         this.participants = participants;
     }
@@ -149,6 +158,7 @@ public class MeetingBinding {
             stringBuilder.append(participant.toString());
             stringBuilder.append(" }, ");
         }
+        stringBuilder.append("]}");
         return stringBuilder.toString();
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class MeetingService {
 
-    private MeetingRepository meetingRepository;
+    private final MeetingRepository meetingRepository;
 
     @Autowired
     public MeetingService(MeetingRepository meetingRepository) {
@@ -23,7 +23,7 @@ public class MeetingService {
 
     public List<MeetingBinding> filterMeetings(MeetingSearchBinding meetingSearchBinding) {
         List<MeetingBinding> meetingBindings = meetingRepository.getMeetings();
-        meetingBindings.removeIf(meetingSearchBinding::matchesSearch);
+        meetingBindings.removeIf(meetingBinding -> !meetingSearchBinding.matchesSearch(meetingBinding));
         return meetingBindings;
     }
 
