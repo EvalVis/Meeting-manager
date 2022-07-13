@@ -22,7 +22,7 @@ public class MeetingServiceTests {
     @Before
     public void setUp() {
         meetingRepository = new MeetingRepository();
-        meetingRepository.setRepositoryFile(new File("data/test_meetings.json"));
+        meetingRepository.setRepositoryFile(new File("test_meetings.json"));
         meetingRepository.recreateFile();
         meetingService = new MeetingService(meetingRepository);
     }

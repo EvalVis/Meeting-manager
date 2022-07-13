@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public abstract class JsonFileRepository {
 
-    private File dataFile = new File("data/meetings.json");
+    private File dataFile = new File("meetings.json");
 
     private void createFileIfNotFound() {
         if(!dataFile.exists()) {

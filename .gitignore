@@ -31,4 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
-data/
+
+### file data ###
+meetings.json
+test_meetings.json

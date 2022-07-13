@@ -24,10 +24,10 @@ public class PersonServiceTests {
     @Before
     public void setUp() {
         meetingRepository = new MeetingRepository();
-        meetingRepository.setRepositoryFile(new File("data/test_meetings.json"));
+        meetingRepository.setRepositoryFile(new File("test_meetings.json"));
         meetingRepository.recreateFile();
         PersonRepository personRepository = new PersonRepository();
-        personRepository.setRepositoryFile(new File("data/test_meetings.json"));
+        personRepository.setRepositoryFile(new File("test_meetings.json"));
         personRepository.recreateFile();
         personService = new PersonService(personRepository);
     }
