@@ -112,18 +112,7 @@ public class MeetingBinding {
         return false;
     }
 
-    public static boolean meetingsIntersect(Collection<MeetingBinding> meetingBindingCollection,
-                                            MeetingBinding meetingBindingToCompare) {
-        for(MeetingBinding meetingBinding: meetingBindingCollection) {
-            if(meetingBinding.meetingsIntersect(meetingBindingToCompare) &&
-                    !meetingBinding.equals(meetingBindingToCompare)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean meetingsIntersect(MeetingBinding meetingBindingToCompare) {
+    public boolean meetingsIntersect(MeetingBinding meetingBindingToCompare) {
         return !(getEndDate().before(meetingBindingToCompare.getStartDate()) ||
                 getStartDate().after(meetingBindingToCompare.getEndDate()));
     }

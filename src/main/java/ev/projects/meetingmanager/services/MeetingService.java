@@ -5,7 +5,6 @@ import ev.projects.meetingmanager.models.MeetingSearchBinding;
 import ev.projects.meetingmanager.repositories.MeetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -24,7 +23,8 @@ public class MeetingService {
 
     public List<MeetingBinding> filterMeetings(MeetingSearchBinding meetingSearchBinding) {
         List<MeetingBinding> meetingBindings = meetingRepository.getMeetings();
-        return meetingSearchBinding.filterMeetings(meetingBindings);
+        meetingBindings.removeIf(meetingSearchBinding::matchesSearch);
+        return meetingBindings;
     }
 
     public void deleteMeeting(String meetingName, String responsiblePerson) {

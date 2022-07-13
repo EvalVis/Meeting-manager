@@ -98,17 +98,7 @@ public class MeetingSearchBinding {
         this.maxParticipantsCount = maxParticipantsCount;
     }
 
-    public List<MeetingBinding> filterMeetings(Collection<MeetingBinding> meetingBindings) {
-        List<MeetingBinding> filteredMeetings = new ArrayList<>();
-        for(MeetingBinding meetingBinding: meetingBindings) {
-            if(matchesSearch(meetingBinding)) {
-                filteredMeetings.add(meetingBinding);
-            }
-        }
-        return filteredMeetings;
-    }
-
-    private boolean matchesSearch(MeetingBinding meetingBinding) {
+    public boolean matchesSearch(MeetingBinding meetingBinding) {
         return matchesDescription(meetingBinding) && matchesResponsiblePerson(meetingBinding) &&
                 matchesMeetingCategory(meetingBinding) && matchesMeetingType(meetingBinding) &&
                 matchesDateInterval(meetingBinding) && matchesParticipantBoundaries(meetingBinding);
