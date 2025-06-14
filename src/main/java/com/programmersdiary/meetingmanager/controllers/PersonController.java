@@ -1,7 +1,7 @@
-package ev.projects.meetingmanager.controllers;
+package com.programmersdiary.meetingmanager.controllers;
 
-import ev.projects.meetingmanager.models.PersonBinding;
-import ev.projects.meetingmanager.services.PersonService;
+import com.programmersdiary.meetingmanager.models.PersonBinding;
+import com.programmersdiary.meetingmanager.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

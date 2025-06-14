@@ -1,4 +1,4 @@
-package ev.projects.meetingmanager.repositories;
+package com.programmersdiary.meetingmanager.repositories;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;

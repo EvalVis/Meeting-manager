@@ -1,8 +1,8 @@
-package ev.projects.meetingmanager.services;
+package com.programmersdiary.meetingmanager.services;
 
-import ev.projects.meetingmanager.models.MeetingBinding;
-import ev.projects.meetingmanager.models.MeetingSearchBinding;
-import ev.projects.meetingmanager.repositories.MeetingRepository;
+import com.programmersdiary.meetingmanager.models.MeetingBinding;
+import com.programmersdiary.meetingmanager.models.MeetingSearchBinding;
+import com.programmersdiary.meetingmanager.repositories.MeetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

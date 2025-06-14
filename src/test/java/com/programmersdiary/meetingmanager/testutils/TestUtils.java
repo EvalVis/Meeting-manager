@@ -1,4 +1,4 @@
-package ev.projects.meetingmanager.testutils;
+package com.programmersdiary.meetingmanager.testutils;
 
 import java.util.Calendar;
 import java.util.Date;

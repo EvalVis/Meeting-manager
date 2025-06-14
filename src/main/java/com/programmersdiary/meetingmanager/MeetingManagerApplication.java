@@ -1,4 +1,4 @@
-package ev.projects.meetingmanager;
+package com.programmersdiary.meetingmanager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

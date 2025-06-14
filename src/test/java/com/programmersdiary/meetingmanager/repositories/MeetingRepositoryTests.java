@@ -1,9 +1,9 @@
-package ev.projects.meetingmanager.repositories;
+package com.programmersdiary.meetingmanager.repositories;
 
-import ev.projects.meetingmanager.models.MeetingBinding;
-import ev.projects.meetingmanager.models.MeetingCategory;
-import ev.projects.meetingmanager.models.MeetingType;
-import ev.projects.meetingmanager.testutils.TestUtils;
+import com.programmersdiary.meetingmanager.models.MeetingBinding;
+import com.programmersdiary.meetingmanager.models.MeetingCategory;
+import com.programmersdiary.meetingmanager.models.MeetingType;
+import com.programmersdiary.meetingmanager.testutils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 

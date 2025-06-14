@@ -1,8 +1,8 @@
-package ev.projects.meetingmanager.repositories;
+package com.programmersdiary.meetingmanager.repositories;
 
 import com.google.gson.reflect.TypeToken;
-import ev.projects.meetingmanager.models.MeetingBinding;
-import ev.projects.meetingmanager.models.PersonBinding;
+import com.programmersdiary.meetingmanager.models.MeetingBinding;
+import com.programmersdiary.meetingmanager.models.PersonBinding;
 import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Type;

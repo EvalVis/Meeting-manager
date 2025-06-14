@@ -1,8 +1,8 @@
-package ev.projects.meetingmanager.controllers;
+package com.programmersdiary.meetingmanager.controllers;
 
-import ev.projects.meetingmanager.models.MeetingBinding;
-import ev.projects.meetingmanager.models.MeetingSearchBinding;
-import ev.projects.meetingmanager.services.MeetingService;
+import com.programmersdiary.meetingmanager.models.MeetingBinding;
+import com.programmersdiary.meetingmanager.models.MeetingSearchBinding;
+import com.programmersdiary.meetingmanager.services.MeetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

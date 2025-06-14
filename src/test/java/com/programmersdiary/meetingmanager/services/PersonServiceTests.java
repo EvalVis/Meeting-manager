@@ -1,12 +1,12 @@
-package ev.projects.meetingmanager.services;
+package com.programmersdiary.meetingmanager.services;
 
-import ev.projects.meetingmanager.models.MeetingBinding;
-import ev.projects.meetingmanager.models.MeetingCategory;
-import ev.projects.meetingmanager.models.MeetingType;
-import ev.projects.meetingmanager.models.PersonBinding;
-import ev.projects.meetingmanager.repositories.MeetingRepository;
-import ev.projects.meetingmanager.repositories.PersonRepository;
-import ev.projects.meetingmanager.testutils.TestUtils;
+import com.programmersdiary.meetingmanager.models.MeetingBinding;
+import com.programmersdiary.meetingmanager.models.MeetingCategory;
+import com.programmersdiary.meetingmanager.models.MeetingType;
+import com.programmersdiary.meetingmanager.models.PersonBinding;
+import com.programmersdiary.meetingmanager.repositories.MeetingRepository;
+import com.programmersdiary.meetingmanager.repositories.PersonRepository;
+import com.programmersdiary.meetingmanager.testutils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 

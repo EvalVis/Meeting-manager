@@ -1,4 +1,4 @@
-package ev.projects.meetingmanager;
+package com.programmersdiary.meetingmanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

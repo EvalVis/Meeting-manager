@@ -1,8 +1,11 @@
-package ev.projects.meetingmanager.services;
+package com.programmersdiary.meetingmanager.services;
 
-import ev.projects.meetingmanager.models.*;
-import ev.projects.meetingmanager.repositories.MeetingRepository;
-import ev.projects.meetingmanager.testutils.TestUtils;
+import com.programmersdiary.meetingmanager.models.MeetingBinding;
+import com.programmersdiary.meetingmanager.models.MeetingCategory;
+import com.programmersdiary.meetingmanager.models.MeetingSearchBinding;
+import com.programmersdiary.meetingmanager.models.MeetingType;
+import com.programmersdiary.meetingmanager.repositories.MeetingRepository;
+import com.programmersdiary.meetingmanager.testutils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +14,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class MeetingServiceTests {
 

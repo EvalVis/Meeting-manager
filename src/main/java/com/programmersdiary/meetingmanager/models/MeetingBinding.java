@@ -1,4 +1,4 @@
-package ev.projects.meetingmanager.models;
+package com.programmersdiary.meetingmanager.models;
 
 
 import java.util.ArrayList;
