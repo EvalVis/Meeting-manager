@@ -6,8 +6,8 @@ import com.programmersdiary.meetingmanager.models.MeetingSearchBinding;
 import com.programmersdiary.meetingmanager.models.MeetingType;
 import com.programmersdiary.meetingmanager.repositories.MeetingRepository;
 import com.programmersdiary.meetingmanager.testutils.TestUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class MeetingServiceTests {
 
     MeetingService meetingService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         meetingRepository = new MeetingRepository();
         meetingRepository.setRepositoryFile(new File("test_meetings.json"));

@@ -4,8 +4,8 @@ import com.programmersdiary.meetingmanager.models.MeetingBinding;
 import com.programmersdiary.meetingmanager.models.MeetingCategory;
 import com.programmersdiary.meetingmanager.models.MeetingType;
 import com.programmersdiary.meetingmanager.testutils.TestUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Date;
@@ -17,7 +17,7 @@ public class MeetingRepositoryTests {
 
     private MeetingRepository meetingRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         meetingRepository = new MeetingRepository();
         meetingRepository.setRepositoryFile(new File("test_meetings.json"));

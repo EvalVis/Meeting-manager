@@ -7,8 +7,8 @@ import com.programmersdiary.meetingmanager.models.PersonBinding;
 import com.programmersdiary.meetingmanager.repositories.MeetingRepository;
 import com.programmersdiary.meetingmanager.repositories.PersonRepository;
 import com.programmersdiary.meetingmanager.testutils.TestUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +21,7 @@ public class PersonServiceTests {
     private MeetingRepository meetingRepository;
     private PersonService personService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         meetingRepository = new MeetingRepository();
         meetingRepository.setRepositoryFile(new File("test_meetings.json"));
