@@ -45,7 +45,7 @@ public class MeetingController {
         @ApiResponse(
             responseCode = "500",
             description = "Internal server error occurred while processing the request",
-            content = @Content(examples = @ExampleObject(value = ""))
+            content = @Content(examples = @ExampleObject(value = "INTERNAL_SERVER_ERROR"))
         )
     })
     private List<MeetingBinding> listMeetings(
