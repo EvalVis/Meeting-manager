@@ -5,6 +5,7 @@ import com.programmersdiary.meetingmanager.services.PersonService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -43,16 +44,26 @@ public class PersonController {
             description = "Person successfully added to meeting",
             content = @Content(
                 mediaType = "application/json",
-                schema = @Schema(type = "boolean", description = "True if person has schedule conflicts, false otherwise")
+                schema = @Schema(type = "boolean", description = "True if person has schedule conflicts, false otherwise"),
+                examples = {
+                    @ExampleObject(name = "No conflicts", value = "false", description = "Person added without schedule conflicts"),
+                    @ExampleObject(name = "Has conflicts", value = "true", description = "Person added but has schedule conflicts")
+                }
             )
         ),
         @ApiResponse(
             responseCode = "400",
-            description = "Bad request - missing required fields in person data"
+            description = "Bad request - missing required fields in person data",
+            content = @Content(
+                examples = @ExampleObject(value = "BAD_REQUEST")
+            )
         ),
         @ApiResponse(
                 responseCode = "500",
-                description = "Internal server error occurred while processing the request"
+                description = "Internal server error occurred while processing the request",
+                content = @Content(
+                    examples = @ExampleObject(value = "INTERNAL_SERVER_ERROR")
+                )
         )
     })
     private ResponseEntity<Boolean> addPersonToMeeting(
@@ -88,15 +99,18 @@ public class PersonController {
     @ApiResponses(value = {
         @ApiResponse(
             responseCode = "200",
-            description = "Person successfully removed from meeting"
+            description = "Person successfully removed from meeting",
+            content = @Content(examples = @ExampleObject(value = "OK"))
         ),
         @ApiResponse(
             responseCode = "400",
-            description = "Meeting not found or person is responsible for the meeting and cannot be removed"
+            description = "Meeting not found or person is responsible for the meeting and cannot be removed",
+            content = @Content(examples = @ExampleObject(value = "BAD_REQUEST"))
         ),
         @ApiResponse(
                 responseCode = "500",
-                description = "Internal server error occurred while processing the request"
+                description = "Internal server error occurred while processing the request",
+                content = @Content(examples = @ExampleObject(value = "INTERNAL_SERVER_ERROR"))
         )
     })
     private HttpStatus deletePersonFromMeeting(

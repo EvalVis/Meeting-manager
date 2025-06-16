@@ -6,6 +6,7 @@ import com.programmersdiary.meetingmanager.services.MeetingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -43,7 +44,8 @@ public class MeetingController {
         ),
         @ApiResponse(
             responseCode = "500",
-            description = "Internal server error occurred while processing the request"
+            description = "Internal server error occurred while processing the request",
+            content = @Content(examples = @ExampleObject(value = ""))
         )
     })
     private List<MeetingBinding> listMeetings(
@@ -71,15 +73,18 @@ public class MeetingController {
     @ApiResponses(value = {
         @ApiResponse(
             responseCode = "200",
-            description = "Meeting created successfully"
+            description = "Meeting created successfully",
+            content = @Content(examples = @ExampleObject(value = "OK"))
         ),
         @ApiResponse(
             responseCode = "400",
-            description = "Bad request - missing required fields or invalid data"
+            description = "Bad request - missing required fields or invalid data",
+            content = @Content(examples = @ExampleObject(value = "BAD_REQUEST"))
         ),
         @ApiResponse(
                 responseCode = "500",
-                description = "Internal server error occurred while processing the request"
+                description = "Internal server error occurred while processing the request",
+                content = @Content(examples = @ExampleObject(value = "INTERNAL_SERVER_ERROR"))
         )
     })
     private HttpStatus createMeeting(
@@ -108,15 +113,18 @@ public class MeetingController {
     @ApiResponses(value = {
         @ApiResponse(
             responseCode = "200",
-            description = "Meeting deleted successfully"
+            description = "Meeting deleted successfully",
+            content = @Content(examples = @ExampleObject(value = "OK"))
         ),
         @ApiResponse(
             responseCode = "404",
-            description = "Meeting not found"
+            description = "Meeting not found",
+            content = @Content(examples = @ExampleObject(value = "NOT_FOUND"))
         ),
         @ApiResponse(
                 responseCode = "500",
-                description = "Internal server error occurred while processing the request"
+                description = "Internal server error occurred while processing the request",
+                content = @Content(examples = @ExampleObject(value = "INTERNAL_SERVER_ERROR"))
         )
     })
     private HttpStatus deleteMeeting(
