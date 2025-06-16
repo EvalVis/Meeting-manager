@@ -27,7 +27,7 @@ public class MeetingController {
         this.meetingService = meetingService;
     }
 
-    @GetMapping("/meetings")
+    @PostMapping("/meetings")
     @Operation(
         summary = "Search and filter meetings",
         description = "Retrieve a list of meetings based on search criteria"
@@ -130,7 +130,8 @@ public class MeetingController {
         @Parameter(
             description = "Full name of the person responsible for the meeting",
             required = true,
-            example = "John Doe"
+            example = "John Doe",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER
         )
         @RequestHeader("responsible_person") String responsiblePerson
     ) {

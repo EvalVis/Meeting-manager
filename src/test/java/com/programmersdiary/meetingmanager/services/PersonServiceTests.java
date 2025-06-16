@@ -40,13 +40,13 @@ public class PersonServiceTests {
                 MeetingType.LIVE, startDate, TestUtils.addHoursToDate(startDate, 1));
         meetingRepository.createMeeting(meetingBinding);
         PersonBinding personBinding = new PersonBinding("Smith", new Date());
-        boolean warned = personService.AddPersonToMeeting(meetingName, personBinding);
+        boolean warned = personService.addPersonToMeeting(meetingName, personBinding);
         assertFalse(warned);
         List<MeetingBinding> meetingBindings = meetingRepository.getMeetings();
         MeetingBinding foundMeeting = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
         assertNotNull(foundMeeting);
         int sizeAfterFirstInsert = foundMeeting.getParticipants().size();
-        warned = personService.AddPersonToMeeting(meetingName, personBinding);
+        warned = personService.addPersonToMeeting(meetingName, personBinding);
         assertFalse(warned);
         meetingBindings = meetingRepository.getMeetings();
         foundMeeting = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
@@ -68,9 +68,9 @@ public class PersonServiceTests {
         meetingRepository.createMeeting(firstMeeting);
         meetingRepository.createMeeting(secondMeeting);
         PersonBinding personBinding = new PersonBinding("Smith", new Date());
-        boolean warned = personService.AddPersonToMeeting(firstMeetingName, personBinding);
+        boolean warned = personService.addPersonToMeeting(firstMeetingName, personBinding);
         assertTrue(warned);
-        warned = personService.AddPersonToMeeting(secondMeetingName, personBinding);
+        warned = personService.addPersonToMeeting(secondMeetingName, personBinding);
         assertTrue(warned);
     }
 
@@ -83,7 +83,7 @@ public class PersonServiceTests {
                 MeetingCategory.SHORT, MeetingType.LIVE, startDate, TestUtils.addHoursToDate(startDate, 10));
         meetingRepository.createMeeting(meetingBinding);
         PersonBinding personBinding = new PersonBinding(responsiblePerson, new Date());
-        personService.AddPersonToMeeting(meetingName, personBinding);
+        personService.addPersonToMeeting(meetingName, personBinding);
         MeetingBinding meetingToRemoveFrom = MeetingBinding.
                 findMeetingByName(meetingRepository.getMeetings(), meetingName);
         assertNotNull(meetingToRemoveFrom);
@@ -105,7 +105,7 @@ public class PersonServiceTests {
                 MeetingCategory.SHORT, MeetingType.LIVE, startDate, TestUtils.addHoursToDate(startDate, 10));
         meetingRepository.createMeeting(meetingBinding);
         PersonBinding personBinding = new PersonBinding(notResponsiblePerson, new Date());
-        personService.AddPersonToMeeting(meetingName, personBinding);
+        personService.addPersonToMeeting(meetingName, personBinding);
         MeetingBinding meetingToRemoveFrom = MeetingBinding.
                 findMeetingByName(meetingRepository.getMeetings(), meetingName);
         assertNotNull(meetingToRemoveFrom);

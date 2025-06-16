@@ -32,7 +32,10 @@ public class PersonController {
     @PostMapping("/person")
     @Operation(
         summary = "Add person to meeting",
-        description = "Add a person to an existing meeting. Returns true if the person has schedule conflicts, false otherwise."
+        description = """
+                Add a person to an existing meeting. Returns true if the person has schedule conflicts, false otherwise.
+                If person is already in the meeting the request does nothing.
+                """
     )
     @ApiResponses(value = {
         @ApiResponse(
@@ -88,8 +91,8 @@ public class PersonController {
             description = "Person successfully removed from meeting"
         ),
         @ApiResponse(
-            responseCode = "404",
-            description = "Meeting or person not found"
+            responseCode = "400",
+            description = "Meeting not found or person is responsible for the meeting and cannot be removed"
         ),
         @ApiResponse(
                 responseCode = "500",
@@ -115,7 +118,7 @@ public class PersonController {
         if (removed) {
             return HttpStatus.OK;
         }
-        return HttpStatus.NOT_FOUND;
+        return HttpStatus.BAD_REQUEST;
     }
 
 }
