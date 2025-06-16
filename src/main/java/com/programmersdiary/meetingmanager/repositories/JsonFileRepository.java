@@ -24,7 +24,7 @@ public abstract class JsonFileRepository {
                     writeToFile("[]");
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException("Failed to create a file.");
             }
         }
     }
@@ -39,17 +39,17 @@ public abstract class JsonFileRepository {
         try(FileWriter fileWriter = new FileWriter(dataFile)) {
             fileWriter.write(data);
         } catch(IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to write to a file.");
         }
     }
 
     protected <T> List<T> getListFromFile(Type listType) {
         createFileIfNotFound();
-        List<T> list = null;
+        List<T> list;
         try(JsonReader reader = new JsonReader(new FileReader(dataFile))) {
             list = new Gson().fromJson(reader, listType);
         } catch(IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to get data from file.");
         }
         return list;
     }

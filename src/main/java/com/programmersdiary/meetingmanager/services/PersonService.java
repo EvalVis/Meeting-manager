@@ -17,7 +17,7 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public boolean AddPersonToMeeting(String meetingName, PersonBinding personBinding) {
+    public boolean addPersonToMeeting(String meetingName, PersonBinding personBinding) {
         boolean intersectingMeetings = false;
         List<MeetingBinding> meetingBindings = personRepository.getMeetings();
         MeetingBinding meetingToAddTo = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
@@ -32,13 +32,14 @@ public class PersonService {
         return intersectingMeetings;
     }
 
-    public void removePersonFromMeeting(String meetingName, String personFullName) {
+    public boolean removePersonFromMeeting(String meetingName, String personFullName) {
         List<MeetingBinding> meetingBindings = personRepository.getMeetings();
         MeetingBinding meetingToRemoveFrom = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
-        if(meetingToRemoveFrom != null &&
-                !meetingToRemoveFrom.getResponsiblePerson().equalsIgnoreCase(personFullName)) {
-            personRepository.deletePersonFromMeeting(meetingName, personFullName);
+        if (meetingToRemoveFrom == null || meetingToRemoveFrom.getResponsiblePerson().equalsIgnoreCase(personFullName)) {
+            return false;
         }
+        personRepository.deletePersonFromMeeting(meetingName, personFullName);
+        return true;
     }
 
     private boolean meetingIntersects(List<MeetingBinding> meetingBindings, MeetingBinding meetingBindingToCompare) {

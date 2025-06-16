@@ -1,11 +1,15 @@
 package com.programmersdiary.meetingmanager.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 
+@Schema(description = "Person information for meeting participants")
 public class PersonBinding {
 
+    @Schema(description = "Full name of the person", example = "John Doe", requiredMode = Schema.RequiredMode.REQUIRED)
     private String fullName;
 
+    @Schema(description = "Date when the person was invited to the meeting", example = "2024-01-10T09:00:00.000Z", requiredMode = Schema.RequiredMode.REQUIRED)
     private Date invitationDate;
 
     @SuppressWarnings("unused")

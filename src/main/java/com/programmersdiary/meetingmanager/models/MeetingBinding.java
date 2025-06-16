@@ -1,20 +1,37 @@
 package com.programmersdiary.meetingmanager.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+@Schema(description = "Meeting details including all required information for creating or updating a meeting")
 public class MeetingBinding {
 
+    @Schema(description = "Name of the meeting", example = "Weekly Team Standup", requiredMode = Schema.RequiredMode.REQUIRED)
     private String name;
+    
+    @Schema(description = "Full name of the person responsible for organizing the meeting", example = "John Doe", requiredMode = Schema.RequiredMode.REQUIRED)
     private String responsiblePerson;
+    
+    @Schema(description = "Detailed description of the meeting purpose and agenda", example = "Weekly standup to discuss project progress and blockers", requiredMode = Schema.RequiredMode.REQUIRED)
     private String description;
+    
+    @Schema(description = "Category of the meeting", requiredMode = Schema.RequiredMode.REQUIRED)
     private MeetingCategory category;
+    
+    @Schema(description = "Type of the meeting", requiredMode = Schema.RequiredMode.REQUIRED)
     private MeetingType type;
+    
+    @Schema(description = "Start date and time of the meeting", example = "2024-01-15T10:00:00.000Z", requiredMode = Schema.RequiredMode.REQUIRED)
     private Date startDate;
+    
+    @Schema(description = "End date and time of the meeting", example = "2024-01-15T11:00:00.000Z", requiredMode = Schema.RequiredMode.REQUIRED)
     private Date endDate;
+    
+    @Schema(description = "List of meeting participants")
     private List<PersonBinding> participants = new ArrayList<>();
 
     @SuppressWarnings("unused")

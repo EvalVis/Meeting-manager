@@ -1,16 +1,36 @@
 package com.programmersdiary.meetingmanager.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 
+@Schema(description = "Search criteria for filtering meetings. All fields are optional.")
 public class MeetingSearchBinding {
 
+    @Schema(description = "Search for meetings containing this text in the name", example = "grand standup")
+    private String nameHas;
+
+    @Schema(description = "Search for meetings containing this text in the description", example = "standup")
     private String descriptionHas;
+    
+    @Schema(description = "Filter by responsible person's name", example = "John Doe")
     private String responsiblePerson;
+    
+    @Schema(description = "Filter by meeting category")
     private MeetingCategory meetingCategory;
+    
+    @Schema(description = "Filter by meeting type")
     private MeetingType meetingType;
+    
+    @Schema(description = "Filter meetings that start from this date onwards", example = "2024-01-01T00:00:00.000Z")
     private Date DateFrom;
+    
+    @Schema(description = "Filter meetings that end before this date", example = "2024-12-31T23:59:59.000Z")
     private Date DateTo;
+    
+    @Schema(description = "Filter meetings with at least this many participants", example = "2")
     private Integer minParticipantsCount;
+    
+    @Schema(description = "Filter meetings with at most this many participants", example = "10")
     private Integer maxParticipantsCount;
 
     public MeetingSearchBinding() {
@@ -18,10 +38,18 @@ public class MeetingSearchBinding {
     }
 
     @SuppressWarnings("unused")
-    public MeetingSearchBinding(String descriptionHas, String responsiblePerson,
-                                MeetingCategory meetingCategory, MeetingType meetingType,
-                                Date dateFrom, Date dateTo,
-                                Integer minParticipantsCount, Integer maxParticipantsCount) {
+    public MeetingSearchBinding(
+            String nameHas,
+            String descriptionHas,
+            String responsiblePerson,
+            MeetingCategory meetingCategory,
+            MeetingType meetingType,
+            Date dateFrom,
+            Date dateTo,
+            Integer minParticipantsCount,
+            Integer maxParticipantsCount
+    ) {
+        this.nameHas = nameHas;
         this.descriptionHas = descriptionHas;
         this.responsiblePerson = responsiblePerson;
         this.meetingCategory = meetingCategory;
@@ -111,9 +139,14 @@ public class MeetingSearchBinding {
     }
 
     public boolean matchesSearch(MeetingBinding meetingBinding) {
-        return matchesDescription(meetingBinding) && matchesResponsiblePerson(meetingBinding) &&
-                matchesMeetingCategory(meetingBinding) && matchesMeetingType(meetingBinding) &&
-                matchesDateInterval(meetingBinding) && matchesParticipantBoundaries(meetingBinding);
+        return matchesName(meetingBinding) && matchesDescription(meetingBinding) &&
+                matchesResponsiblePerson(meetingBinding) && matchesMeetingCategory(meetingBinding) &&
+                matchesMeetingType(meetingBinding) && matchesDateInterval(meetingBinding) &&
+                matchesParticipantBoundaries(meetingBinding);
+    }
+
+    private boolean matchesName(MeetingBinding meetingBinding) {
+        return nameHas == null || meetingBinding.getName().contains(nameHas);
     }
 
     private boolean matchesDescription(MeetingBinding meetingBinding) {

@@ -27,13 +27,13 @@ public class MeetingService {
         return meetingBindings;
     }
 
-    public void deleteMeeting(String meetingName, String responsiblePerson) {
+    public boolean deleteMeeting(String meetingName, String responsiblePerson) {
         List<MeetingBinding> meetingBindings = meetingRepository.getMeetings();
         MeetingBinding meetingToDelete = MeetingBinding.findMeetingByName(meetingBindings, meetingName);
-        if(meetingToDelete != null && meetingToDelete.getResponsiblePerson().equalsIgnoreCase(responsiblePerson)) {
-            meetingRepository.deleteMeeting(meetingName);
+        if (meetingToDelete == null || !meetingToDelete.getResponsiblePerson().equalsIgnoreCase(responsiblePerson)) {
+            return false;
         }
+        meetingRepository.deleteMeeting(meetingName);
+        return true;
     }
-
-
 }
